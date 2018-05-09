@@ -5,17 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RetrieveBox"
         mc:Ignorable="d"
-        Title="PhoneList" Height="500" Width="350">
+        Title="Listing téléphonique" Height="550" Width="400" ResizeMode="NoResize" Focusable="False">
     <Grid Background="#FF17124B">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="textBox" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontFamily="Interstate" TextAlignment="Center" AutomationProperties.HelpText="ENTREZ LE NOM OU LE NUMÉRO" MaxLines="1" AutoWordSelection="True" Margin="0,60,0,0" Height="60" TextOptions.TextHintingMode="Fixed" CharacterCasing="Upper" BorderThickness="0" ClipToBounds="True" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="textBox" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontFamily="Interstate" TextAlignment="Center" AutomationProperties.HelpText="ENTREZ LE NOM OU LE NUMÉRO" MaxLines="1" AutoWordSelection="True" Margin="0,60,0,0" Height="60" TextOptions.TextHintingMode="Fixed" CharacterCasing="Upper" BorderThickness="0" ClipToBounds="True" TextChanged="TextBox_TextChanged" TabIndex="6" ToolTip="Entrez un nom ou un numéro" Loaded="Textbox_Loaded"/>
         <Rectangle Fill="White" Height="163" Stroke="Black" VerticalAlignment="Top" Panel.ZIndex="-1" StrokeThickness="0"/>
-        <DataGrid x:Name="gridView" Margin="10,182,0,23" Background="#FF17124B" BorderThickness="0" AlternatingRowBackground="#FF17124B" AreRowDetailsFrozen="True" RowBackground="#FF17124B" TextOptions.TextHintingMode="Animated" Foreground="White" FontSize="24" FontFamily="Interstate" HeadersVisibility="None" GridLinesVisibility="None" BorderBrush="#FF17124B" RowHeaderWidth="0" FrozenColumnCount="2" FontWeight="Thin" ClipToBounds="True" IsTextSearchCaseSensitive="True" HorizontalAlignment="Left" Width="322">
-            <DataGrid.ContextMenu>
-                <ContextMenu/>
-            </DataGrid.ContextMenu>
-        </DataGrid>
+        <DataGrid x:Name="gridView" Margin="10,182,10,0" Background="#FF17124B" BorderThickness="0" AlternatingRowBackground="#FF17124B" AreRowDetailsFrozen="True" RowBackground="#FF17124B" TextOptions.TextHintingMode="Animated" Foreground="White" FontSize="22" FontFamily="Interstate" HeadersVisibility="None" GridLinesVisibility="None" BorderBrush="#FF17124B" RowHeaderWidth="0" FrozenColumnCount="2" FontWeight="Thin" ClipToBounds="True" IsTextSearchCaseSensitive="True" ColumnWidth="300" Focusable="False" VerticalGridLinesBrush="White" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" AutomationProperties.HelpText="Automation - helptext" IsReadOnly="True"/>
     </Grid>
 </Window>

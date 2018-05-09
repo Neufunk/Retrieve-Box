@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Npgsql;
 
 namespace RetrieveBox {
@@ -33,12 +22,14 @@ namespace RetrieveBox {
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e) {
             string userInput = textBox.Text;
             Console.WriteLine(userInput);
+
             if (String.IsNullOrEmpty(textBox.Text)) {
                 ds.Reset();
                 sql = "SELECT name, phone FROM phone_number";
                 StartQuery();
             } else {
-                sql = "SELECT name, phone FROM phone_number WHERE name ILIKE '%" + userInput + "%'";
+                sql = "SELECT name, phone FROM phone_number WHERE name ILIKE '%" + userInput + "%' OR phone ILIKE '%" + userInput +
+                    "%' OR centre ILIKE '%" + userInput + "%'";
                 StartQuery();
             }
         }
@@ -66,6 +57,10 @@ namespace RetrieveBox {
                 MessageBox.Show(msg.ToString());
                 throw;
             }
+        }
+
+        private void Textbox_Loaded(object sender, RoutedEventArgs e) {
+            textBox.Focus();
         }
     }
 }
