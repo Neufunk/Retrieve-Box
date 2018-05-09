@@ -1,12 +1,21 @@
-﻿<Window x:Class="Retrieve_Box.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window x:Class="RetrieveBox.MainWindow"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Retrieve_Box"
+        xmlns:local="clr-namespace:RetrieveBox"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="PhoneList" Height="500" Width="350">
+    <Grid Background="#FF17124B">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="textBox" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontFamily="Interstate" TextAlignment="Center" AutomationProperties.HelpText="ENTREZ LE NOM OU LE NUMÉRO" MaxLines="1" AutoWordSelection="True" Margin="0,60,0,0" Height="60" TextOptions.TextHintingMode="Fixed" CharacterCasing="Upper" BorderThickness="0" ClipToBounds="True" TextChanged="TextBox_TextChanged"/>
+        <Rectangle Fill="White" Height="163" Stroke="Black" VerticalAlignment="Top" Panel.ZIndex="-1" StrokeThickness="0"/>
+        <DataGrid x:Name="gridView" Margin="10,182,0,23" Background="#FF17124B" BorderThickness="0" AlternatingRowBackground="#FF17124B" AreRowDetailsFrozen="True" RowBackground="#FF17124B" TextOptions.TextHintingMode="Animated" Foreground="White" FontSize="24" FontFamily="Interstate" HeadersVisibility="None" GridLinesVisibility="None" BorderBrush="#FF17124B" RowHeaderWidth="0" FrozenColumnCount="2" FontWeight="Thin" ClipToBounds="True" IsTextSearchCaseSensitive="True" HorizontalAlignment="Left" Width="322">
+            <DataGrid.ContextMenu>
+                <ContextMenu/>
+            </DataGrid.ContextMenu>
+        </DataGrid>
     </Grid>
 </Window>
