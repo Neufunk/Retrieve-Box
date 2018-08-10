@@ -12,6 +12,11 @@
         </Grid.ColumnDefinitions>
         <TextBox x:Name="textBox" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontFamily="Interstate" TextAlignment="Center" AutomationProperties.HelpText="ENTREZ LE NOM OU LE NUMÉRO" MaxLines="1" AutoWordSelection="True" Margin="0,60,0,0" Height="60" TextOptions.TextHintingMode="Fixed" CharacterCasing="Upper" BorderThickness="0" ClipToBounds="True" TextChanged="TextBox_TextChanged" TabIndex="6" ToolTip="Entrez un nom ou un numéro" Loaded="Textbox_Loaded"/>
         <Rectangle Fill="White" Height="163" Stroke="Black" VerticalAlignment="Top" Panel.ZIndex="-1" StrokeThickness="0"/>
-        <DataGrid x:Name="gridView" Margin="10,182,10,0" Background="#FF17124B" BorderThickness="0" AlternatingRowBackground="#FF17124B" AreRowDetailsFrozen="True" RowBackground="#FF17124B" TextOptions.TextHintingMode="Animated" Foreground="White" FontSize="22" FontFamily="Interstate" HeadersVisibility="None" GridLinesVisibility="None" BorderBrush="#FF17124B" RowHeaderWidth="0" FrozenColumnCount="2" FontWeight="Thin" ClipToBounds="True" IsTextSearchCaseSensitive="True" ColumnWidth="300" Focusable="False" VerticalGridLinesBrush="White" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" AutomationProperties.HelpText="Automation - helptext" IsReadOnly="True"/>
+        <DataGrid x:Name="gridView" Margin="10,182,10,0" Background="#FF17124B" BorderThickness="0" AlternatingRowBackground="#FF17124B" AreRowDetailsFrozen="True" RowBackground="#FF17124B" TextOptions.TextHintingMode="Animated" Foreground="White" FontSize="22" FontFamily="Product Sans" HeadersVisibility="None" GridLinesVisibility="None" BorderBrush="#FF17124B" RowHeaderWidth="0" FrozenColumnCount="2" FontWeight="Thin" ClipToBounds="True" IsTextSearchCaseSensitive="True" ColumnWidth="300" Focusable="False" VerticalGridLinesBrush="White" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" AutomationProperties.HelpText="Automation - helptext" IsReadOnly="True" MouseDoubleClick="MouseDoubleClick" SelectionMode="Single"/>
+        <Button x:Name="helpButton" Content="INFO" HorizontalAlignment="Left" Margin="0,145,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Background="#FF17124B" Foreground="White" BorderBrush="#FF17124B" FontFamily="Product Sans">
+            <Button.Effect>
+                <DropShadowEffect Direction="360" Opacity="0.7"/>
+            </Button.Effect>
+        </Button>
     </Grid>
 </Window>
