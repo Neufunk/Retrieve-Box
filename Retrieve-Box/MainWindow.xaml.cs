@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Npgsql;
+
+
 
 namespace RetrieveBox {
     /// <summary>
@@ -12,7 +15,7 @@ namespace RetrieveBox {
 
         private DataSet ds = new DataSet();
         private DataTable dt = new DataTable();
-        string sql = "SELECT name, phone, mail FROM phone_number";
+        string sql = "SELECT name, phone, mail, job, centre FROM phone_number";
 
         public MainWindow() {
             InitializeComponent();
@@ -25,15 +28,15 @@ namespace RetrieveBox {
 
             if (String.IsNullOrEmpty(textBox.Text)) {
                 ds.Reset();
-                sql = "SELECT name, phone, mail FROM phone_number";
+                sql = "SELECT name, phone, mail, job, centre FROM phone_number";
                 StartQuery();
             } else {
-                sql = "SELECT name, phone, mail FROM phone_number WHERE name ILIKE '%" + userInput + "%' OR phone ILIKE '%" + userInput +
+                sql = "SELECT name, phone, mail, job, centre FROM phone_number WHERE name ILIKE '%" + userInput + "%' OR phone ILIKE '%" + userInput +
                     "%' OR centre ILIKE '%" + userInput + "%'";
                 StartQuery();
             }
         }
-        
+
         private void StartQuery() {
             try {
                 // PostgeSQL-style connection string
@@ -65,27 +68,48 @@ namespace RetrieveBox {
 
         private new void MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             DataRowView selectedRow = gridView.SelectedItem as DataRowView;
+            string name = selectedRow["name"].ToString();
+            string invertedName = String.Join(" ", name.Split(' ').Reverse().ToArray());
             string email = selectedRow["mail"].ToString();
+            string phone = selectedRow["phone"].ToString();
+            string job = selectedRow["job"].ToString();
+            string centre = selectedRow["centre"].ToString();
             Console.WriteLine("DoubleClick triggered on e-mail :" + email);
 
-            Microsoft.Office.Interop.Outlook.Application oApp = new Microsoft.Office.Interop.Outlook.Application();
-            Microsoft.Office.Interop.Outlook.MailItem oMsg = (Microsoft.Office.Interop.Outlook.MailItem)oApp.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
+            MessageBoxResult result = MessageBox.Show(
+                "NOM: " + invertedName + "\n" +
+                "FONCTION: " + job + "\n" +
+                "CENTRE: " + centre + "\n" +
+                "TELEPHONE: " + phone + "\n" +
+                "MAIL: " + email + "\n" +
+                " \n Écrire un mail à " + invertedName + " ?\n", "Fiche de " + invertedName, MessageBoxButton.YesNo
+                );
 
-            oMsg.Recipients.Add(email);
-            oMsg.BodyFormat = Microsoft.Office.Interop.Outlook.OlBodyFormat.olFormatHTML;
-            oMsg.HTMLBody = "";
-            oMsg.Display(false); //In order to display it in modal inspector change the argument to true
+            switch (result) {
+                case MessageBoxResult.Yes:
+                    Microsoft.Office.Interop.Outlook.Application oApp = new Microsoft.Office.Interop.Outlook.Application();
+                    Microsoft.Office.Interop.Outlook.MailItem oMsg = (Microsoft.Office.Interop.Outlook.MailItem)oApp.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
+
+                    oMsg.Recipients.Add(email);
+                    oMsg.BodyFormat = Microsoft.Office.Interop.Outlook.OlBodyFormat.olFormatHTML;
+                    oMsg.HTMLBody = "";
+                    oMsg.Display(true);
+                    break;
+                case MessageBoxResult.No:
+                    // Nothing
+                    break;
+                default:
+                    // Nothing
+                    break;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
             MessageBox.Show("     INFO\n" +
-                "     ---------\n" +
-                "   Vous pouvez rechercher par : \n" +
-                "   - NOM / PRÉNOM \n" +
-                "   - NUMÉRO \n" +
-                "   - CENTRE \n" +
-                "\n" +
-                "   Double-cliquez sur un nom pour ouvrir un nouveau mail à destination de cette personne.");
+                "     ---------\n\n" +
+                "La recherche peut s'effectuer via les critères suivants : \n" +
+                "   - NOM / PRÉNOM / NUMÉRO DE TÉLEPHONE / CENTRE \n" +
+                "Double-cliquez sur un nom pour ouvrir la fiche contact détaillée ou pour envoyer un e-mail à la personne sélectionnée.");
         }
     }
 }
